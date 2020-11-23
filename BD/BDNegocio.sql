@@ -22,6 +22,7 @@ CREATE TABLE ventas(
     id_user INT,
     total INT,
     id_producto INT,
+    PRIMARY KEY (id),
     FOREIGN KEY (id_producto) REFERENCES productos(id),
     FOREIGN KEY (id_user) REFERENCES usuario(id)
 );
