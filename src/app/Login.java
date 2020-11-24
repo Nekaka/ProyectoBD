@@ -5,6 +5,10 @@
  */
 package app;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vania
@@ -17,6 +21,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image icon = new ImageIcon(getClass().getResource("/image/Icono_normal.png")).getImage();
+        this.setIconImage(icon);
     }
 
     /**
@@ -29,8 +35,17 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jpIngreso = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        lblMinimizar = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblIconNom = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
+        lblIconContra = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
+        lblIconoTienda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -40,52 +55,91 @@ public class Login extends javax.swing.JFrame {
         jpIngreso.setBackground(new java.awt.Color(255, 255, 255));
         jpIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jpIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        jpIngreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jpIngresoLayout = new javax.swing.GroupLayout(jpIngreso);
-        jpIngreso.setLayout(jpIngresoLayout);
-        jpIngresoLayout.setHorizontalGroup(
-            jpIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 288, Short.MAX_VALUE)
-        );
-        jpIngresoLayout.setVerticalGroup(
-            jpIngresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
-        );
+        lblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon_Minimizar.png"))); // NOI18N
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizarMouseClicked(evt);
+            }
+        });
+        jpIngreso.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
 
-        getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 580));
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon_Cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+        jpIngreso.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 0, 40, 40));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Enter_ON.png"))); // NOI18N
+        btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+        jpIngreso.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 130, 40));
+        jpIngreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jpIngreso.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 760, 530));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setText("Nombre de usuario:");
+        jpIngreso.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        lblIconNom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconNom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/IconChic.png"))); // NOI18N
+        jpIngreso.add(lblIconNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 40, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblContraseña.setText("Contraseña:");
+        jpIngreso.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 760, 50));
+        lblIconContra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Candado.png"))); // NOI18N
+        jpIngreso.add(lblIconContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 40, 40));
+
+        lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon_1.png"))); // NOI18N
+        jpIngreso.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 110, 110));
+
+        lblIconoTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito.png"))); // NOI18N
+        jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 130));
+
+        getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
+        this.setState(Login.ICONIFIED);//Para minimizar
+    }//GEN-LAST:event_lblMinimizarMouseClicked
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        int dialog = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del programa?", "Exit", dialog);
+        if (result == 0){
+            System.exit(0);//Cerrar el programa
+        }
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,8 +177,17 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpIngreso;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblIcon;
+    private javax.swing.JLabel lblIconContra;
+    private javax.swing.JLabel lblIconNom;
+    private javax.swing.JLabel lblIconoTienda;
+    private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }
