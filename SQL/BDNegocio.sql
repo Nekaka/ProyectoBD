@@ -34,3 +34,10 @@ CREATE TABLE pedido(
     PRIMARY KEY (id),
     FOREIGN KEY (producto) REFERENCES productos(id)
 );
+CREATE TABLE boletas(
+  id int AUTO_INCREMENT,
+  id_ventas INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_ventas) REFERENCES ventas(id)    
+
+);
