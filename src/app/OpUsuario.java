@@ -102,6 +102,11 @@ public class OpUsuario extends javax.swing.JFrame {
 
         btnActualizar.setText("Actualizar Usuario");
         btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
 
         btnBorrar.setText("Borrar Usuario");
@@ -263,8 +268,46 @@ public class OpUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jtableMouseClicked
 
     private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
+        int mensaje = JOptionPane.YES_NO_OPTION;
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea borrar este usuario?", "Borrar usuario", mensaje);
         
+        if(respuesta == 0){
+            try {
+                DAO oDAO = new DAO();
+                oDAO.borrarUsuario(Integer.parseInt(txtID.getText()));
+                txtID.setText(null);
+                txtUser.setText(null);
+                pswPass.setText(null);
+                txtNomApe.setText(null);
+                jtable.setModel(oDAO.show_table_user());
+                JOptionPane.showConfirmDialog(rootPane, "Usuario borrado correctamente!!");
+            } catch (SQLException ex) {
+                Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }//GEN-LAST:event_btnBorrarMouseClicked
+
+    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
+        int mensaje = JOptionPane.YES_NO_OPTION;
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea actualizar este usuario?", "Actualizar usuario", mensaje);
+        
+        if(respuesta == 0){
+            try {
+                DAO oDAO = new DAO();
+                oDAO.actualizarUsuario(Integer.parseInt(txtID.getText()), txtUser.getText(), pswPass.getText(), txtNomApe.getText());
+                txtID.setText(null);
+                txtUser.setText(null);
+                pswPass.setText(null);
+                txtNomApe.setText(null);
+                jtable.setModel(oDAO.show_table_user());
+                JOptionPane.showMessageDialog(rootPane, "Datos del usuario actualizados correctamente!!");
+            } catch (SQLException ex) {
+                Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_btnActualizarMouseClicked
 
     /**
      * @param args the command line arguments
