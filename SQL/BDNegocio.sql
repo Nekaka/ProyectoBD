@@ -40,9 +40,12 @@ CREATE TABLE boletas(
   id INT AUTO_INCREMENT,
   id_ventas INT,
   id_producto VARCHAR,
+  id_producto VARCHAR(20),
   cantidad INT(11),
   precio_venta INT(11),
   PRIMARY KEY (id),
   FOREIGN KEY (id_ventas) REFERENCES ventas(id),
   FOREIGN KEY (id_producto) REFERENCES productos(id)
+
 );
+
