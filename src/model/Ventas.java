@@ -13,17 +13,19 @@ public class Ventas {
     private int id;
     private int id_user;
     private int total;
-    private String id_producto;
+    private int fecha_venta;
+    private int estado;
     
     public Ventas(){
         
     }
     
-    public Ventas(int id, int id_user,int total, String id_producto){
+    public Ventas(int id, int id_user,int total, int fecha_venta, int estado){
         this.id = id;
         this.id_user = id_user;
         this.total = total;
-        this.id_producto = id_producto;
+        this.fecha_venta = fecha_venta;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -50,14 +52,21 @@ public class Ventas {
         this.total = total;
     }
 
-    public String getId_producto() {
-        return id_producto;
+    public int getFecha_venta() {
+        return fecha_venta;
     }
 
-    public void setId_producto(String id_producto) {
-        this.id_producto = id_producto;
+    public void setFecha_venta(int fecha_venta) {
+        this.fecha_venta = fecha_venta;
     }
-    
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
     
     
    }
