@@ -39,13 +39,13 @@ public class Login extends javax.swing.JFrame {
         lblCerrar = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblIconNom = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         lblIconContra = new javax.swing.JLabel();
         lblIcon = new javax.swing.JLabel();
         lblIconoTienda = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -77,6 +77,11 @@ public class Login extends javax.swing.JFrame {
 
         btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Enter_ON.png"))); // NOI18N
         btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIniciarMouseClicked(evt);
+            }
+        });
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
@@ -84,13 +89,6 @@ public class Login extends javax.swing.JFrame {
         });
         jpIngreso.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 130, 40));
         jpIngreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, 30));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jpIngreso.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombre.setText("Nombre de usuario:");
@@ -116,6 +114,9 @@ public class Login extends javax.swing.JFrame {
         lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito.png"))); // NOI18N
         jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 130));
 
+        jPasswordField1.setText("jPasswordField1");
+        jpIngreso.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
+
         getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         pack();
@@ -133,13 +134,13 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseClicked
+        
+    }//GEN-LAST:event_btnIniciarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,8 +179,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpIngreso;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContraseña;
