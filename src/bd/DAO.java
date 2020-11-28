@@ -5,6 +5,7 @@
  */
 package bd;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import model.Usuario;
 /**
  *
@@ -19,8 +20,8 @@ public class DAO {
             oConexion = new Conexion("localhost", "BDnegocio", "root", "");
         }
     
-    public void crearUsuario(Usuario oUsuario) throws SQLException  {
-        sql = "INSERT INTO usuario (null, '" + oUsuario.getUser() +"', '" + oUsuario.getPass() +"', '" + oUsuario.getNom_ape() + "');";
+    public void crearUsuario(String user, String pass, String nom_ape) throws SQLException  {
+        sql = "INSERT INTO usuario VALUES (null, '" + user +"', '" + pass +"', '" + nom_ape + "');";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
@@ -31,8 +32,8 @@ public class DAO {
         System.out.println(sql);
     }
     
-    public void actualizarUsuario(Usuario oUsuario) throws SQLException{
-        sql = "UPDATE usuario SET user='"+oUsuario.getUser()+"', pass='"+oUsuario.getPass()+"', nom_ape='"+oUsuario.getNom_ape()+"' WHERE id='"+oUsuario.getId()+"';";
+    public void actualizarUsuario(int id, String user, String pass, String nom_ape) throws SQLException{
+        sql = "UPDATE usuario SET user='"+user+"', pass='"+pass+"', nom_ape='"+nom_ape+"' WHERE id='"+id+"';";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
@@ -53,5 +54,25 @@ public class DAO {
             return null;
         }
         
+    }
+    
+    public DefaultTableModel show_table_user() throws SQLException{
+        sql = "SELECT * FROM usuario;"; 
+        oConexion.ejecutarSelect(sql);
+        System.out.println(sql);
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"id","user","pass","nom_ape"});
+        
+        try{
+        while(oConexion.rs.next()){
+            modelo.addRow(new Object[]{oConexion.rs.getInt("id"), oConexion.rs.getString("user"), oConexion.rs.getString("pass"), oConexion.rs.getString("nom_ape")});
+        }
+        return modelo;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
     }
 }

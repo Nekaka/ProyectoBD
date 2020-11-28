@@ -5,9 +5,14 @@
  */
 package app;
 
+import bd.DAO;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import model.Usuario;
 
 /**
  *
@@ -38,14 +43,14 @@ public class Login extends javax.swing.JFrame {
         lblMinimizar = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblIconNom = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         lblIconContra = new javax.swing.JLabel();
         lblIcon = new javax.swing.JLabel();
         lblIconoTienda = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pswPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -88,7 +93,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jpIngreso.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 130, 40));
-        jpIngreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, 30));
+        jpIngreso.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombre.setText("Nombre de usuario:");
@@ -114,8 +119,8 @@ public class Login extends javax.swing.JFrame {
         lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito.png"))); // NOI18N
         jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 130));
 
-        jPasswordField1.setText("jPasswordField1");
-        jpIngreso.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
+        pswPass.setText("jPasswordField1");
+        jpIngreso.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
 
         getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -139,6 +144,36 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnIniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarMouseClicked
+        if(txtUser.getText().equals("") || pswPass.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            txtUser.setText(null);
+            pswPass.setText(null);
+            txtUser.requestFocus();   
+        }else{
+            try {
+                DAO oDAO = new DAO();
+                Usuario oUsuario = oDAO.esUsuario(txtUser.getText(), pswPass.getText());
+                System.out.println("" +  txtUser.getText() + pswPass.getText());
+                
+                if(oUsuario == null){
+                    JOptionPane.showMessageDialog(rootPane, "Este usuario no existe!!");
+                    txtUser.setText(null);
+                    pswPass.setText(null);
+                    txtUser.requestFocus();
+                }else if(oUsuario.getId() == 1){
+                    Admin admin = new Admin();
+                    admin.setVisible(true);
+                    this.dispose();
+                }else{
+                    Caja caja = new Caja();
+                    caja.setVisible(true);
+                    this.dispose();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
         
     }//GEN-LAST:event_btnIniciarMouseClicked
 
@@ -179,8 +214,6 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jpIngreso;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContraseña;
@@ -190,5 +223,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoTienda;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JPasswordField pswPass;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

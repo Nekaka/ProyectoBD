@@ -5,6 +5,10 @@
  */
 package app;
 
+import bd.DAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,12 +34,10 @@ public class OpUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txtUser = new javax.swing.JTextField();
+        txtNomApe = new javax.swing.JTextField();
+        pswPass = new javax.swing.JPasswordField();
+        btnCrearUser = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -44,53 +46,51 @@ public class OpUsuario extends javax.swing.JFrame {
         lblMinimizar = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
         lblVolver = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, -1, 100));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUserActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 170, 30));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 170, 30));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNomApe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNomApeActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 170, 30));
+        jPanel1.add(txtNomApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 170, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 170, 30));
+        pswPass.setText("jPasswordField1");
+        jPanel1.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 170, 30));
 
-        jButton1.setText("Crear Usuario");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, -1, -1));
+        btnCrearUser.setText("Crear Usuario");
+        btnCrearUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearUserMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnCrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jButton2.setText("Actualizar Usuario");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, -1, -1));
 
         jButton3.setText("Borrar Usuario");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 450, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
 
         jLabel1.setText("User:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
@@ -99,7 +99,7 @@ public class OpUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
         jLabel3.setText("Nombre apellido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
 
         lblMinimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon_Minimizar.png"))); // NOI18N
@@ -122,18 +122,33 @@ public class OpUsuario extends javax.swing.JFrame {
         lblVolver.setText("jLabel4");
         jPanel1.add(lblVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        jtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtable);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtUserActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNomApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomApeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNomApeActionPerformed
 
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(OpUsuario.ICONIFIED);//Para minimizar
@@ -147,6 +162,39 @@ public class OpUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
 
+    private void btnCrearUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearUserMouseClicked
+        int mensaje = JOptionPane.YES_NO_OPTION;
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea registrar un nuevo usuario?", "Registro", mensaje);
+        if(respuesta == 0){
+            if(txtUser.getText().equals("") || pswPass.getText().equals("") || txtNomApe.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            }else{
+                try {
+                    DAO oDAO = new DAO();
+                    oDAO.crearUsuario(txtUser.getText(), pswPass.getText(), txtNomApe.getText());
+                    txtUser.setText(null);
+                    pswPass.setText(null);
+                    txtNomApe.setText(null);
+                    txtUser.requestFocus();
+                    JOptionPane.showMessageDialog(rootPane, "Usuario creado correctamente");
+                    jtable.setModel(oDAO.show_table_user());
+                } catch (SQLException ex) {
+                    Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnCrearUserMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            DAO oDAO = new DAO();
+            jtable.setModel(oDAO.show_table_user());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -158,7 +206,7 @@ public class OpUsuario extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -184,20 +232,20 @@ public class OpUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCrearUser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jtable;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblVolver;
+    private javax.swing.JPasswordField pswPass;
+    private javax.swing.JTextField txtNomApe;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
