@@ -62,7 +62,7 @@ public class DAO {
         System.out.println(sql);
         
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"id","user","pass","nom_ape"});
+        modelo.setColumnIdentifiers(new Object[]{"ID","USER","PASS","NOM_APE"});
         
         try{
         while(oConexion.rs.next()){
