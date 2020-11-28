@@ -120,6 +120,11 @@ public class Login extends javax.swing.JFrame {
         jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 130));
 
         pswPass.setText("jPasswordField1");
+        pswPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pswPassFocusGained(evt);
+            }
+        });
         jpIngreso.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
 
         getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
@@ -176,6 +181,10 @@ public class Login extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnIniciarMouseClicked
+
+    private void pswPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswPassFocusGained
+        pswPass.setText(null);
+    }//GEN-LAST:event_pswPassFocusGained
 
     /**
      * @param args the command line arguments

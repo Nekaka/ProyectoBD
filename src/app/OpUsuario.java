@@ -6,9 +6,11 @@
 package app;
 
 import bd.DAO;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +24,10 @@ public class OpUsuario extends javax.swing.JFrame {
      */
     public OpUsuario() {
         initComponents();
+        initComponents();
+        this.setLocationRelativeTo(null);
+        Image icon = new ImageIcon(getClass().getResource("/image/Icono_normal.png")).getImage();
+        this.setIconImage(icon);
     }
 
     /**
@@ -76,6 +82,11 @@ public class OpUsuario extends javax.swing.JFrame {
         jPanel1.add(txtNomApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 170, 30));
 
         pswPass.setText("jPasswordField1");
+        pswPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pswPassFocusGained(evt);
+            }
+        });
         jPanel1.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 170, 30));
 
         btnCrearUser.setText("Crear Usuario");
@@ -194,6 +205,10 @@ public class OpUsuario extends javax.swing.JFrame {
             Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void pswPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswPassFocusGained
+        pswPass.setText(null);
+    }//GEN-LAST:event_pswPassFocusGained
 
     /**
      * @param args the command line arguments
