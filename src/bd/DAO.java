@@ -83,7 +83,13 @@ public class DAO {
     }
     
     public void actualizarProducto(String id,String nombre, int stock, int precio, int estado) throws SQLException  {
-        sql = "UPDATE productos SET id='" + id +"', nombre='" +nombre +"', stock='" + stock + "', precio='" + precio +"', estado='"+ estado+ "');";
+        sql = "UPDATE productos SET id='" + id +"', nombre='" +nombre +"', stock='" + stock + "', precio='" + precio +"', estado='"+ estado+ "' WHERE id='"+id+"';";
+        oConexion.ejecutar(sql);
+        System.out.println(sql);
+    }
+    
+    public void borrarProducto(String id) throws SQLException{
+        sql = "DELETE FROM productos WHERE id='"+id+"'";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
