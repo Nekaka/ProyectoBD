@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package bd;
+import java.util.List;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import model.Productos;
 import model.Usuario;
 /**
  *
@@ -111,6 +114,24 @@ public class DAO {
             System.out.println(e);
         }
         return null;
+    }
+    
+    public List<Productos> getProductos() throws SQLException{
+        ArrayList<Productos> listaDeProductos = new ArrayList<>();
+        sql = "SELECT * FROM productos;";
+        oConexion.rs = oConexion.ejecutarSelect(sql);
+        Productos oProductos;
+        while(oConexion.rs.next()){
+            oProductos = new Productos();
+            oProductos.setId(oConexion.rs.getString(1));
+            oProductos.setNombre(oConexion.rs.getString(2));
+            oProductos.setStock(oConexion.rs.getInt(3));
+            oProductos.setPrecio(oConexion.rs.getInt(4));
+            oProductos.setEstado(oConexion.rs.getInt(5));
+            listaDeProductos.add(oProductos);
+        }
+        oConexion.rs.close();
+        return listaDeProductos;
     }
     
 }

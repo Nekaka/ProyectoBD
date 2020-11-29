@@ -13,14 +13,14 @@ public class Ventas {
     private int id;
     private int id_user;
     private int total;
-    private int fecha_venta;
+    private String fecha_venta;
     private int estado;
     
     public Ventas(){
         
     }
     
-    public Ventas(int id, int id_user,int total, int fecha_venta, int estado){
+    public Ventas(int id, int id_user,int total, String fecha_venta, int estado){
         this.id = id;
         this.id_user = id_user;
         this.total = total;
@@ -52,11 +52,11 @@ public class Ventas {
         this.total = total;
     }
 
-    public int getFecha_venta() {
+    public String getFecha_venta() {
         return fecha_venta;
     }
 
-    public void setFecha_venta(int fecha_venta) {
+    public void setFecha_venta(String fecha_venta) {
         this.fecha_venta = fecha_venta;
     }
 
