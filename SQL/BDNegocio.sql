@@ -30,7 +30,7 @@ CREATE TABLE ventas(
 
 CREATE TABLE pedido(
     id INT AUTO_INCREMENT,
-    producto VARCHAR(50),
+    producto INT,
     cantidad INT(6),
     PRIMARY KEY (id),
     FOREIGN KEY (producto) REFERENCES productos(id)
@@ -39,8 +39,7 @@ CREATE TABLE pedido(
 CREATE TABLE boletas(
   id INT AUTO_INCREMENT,
   id_ventas INT,
-  id_producto VARCHAR,
-  id_producto VARCHAR(20),
+  id_producto INT,
   cantidad INT(11),
   precio_venta INT(11),
   PRIMARY KEY (id),
