@@ -96,7 +96,7 @@ public class DAO {
     
     public DefaultTableModel show_table_productos() throws SQLException{
         sql = "SELECT * FROM productos;";
-        oConexion.ejecutar(sql);
+        oConexion.ejecutarSelect(sql);
         System.out.println(sql);
         
         DefaultTableModel modelo = new DefaultTableModel();
