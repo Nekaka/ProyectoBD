@@ -143,9 +143,19 @@ public class OpProductos extends javax.swing.JFrame {
         jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
 
         btnActualizar.setText("Actualizar Producto");
+        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, -1, -1));
 
         btnBorrar.setText("Borrar Producto");
+        btnBorrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
@@ -204,6 +214,58 @@ public class OpProductos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnCrearMouseClicked
+
+    private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
+        int mensaje = JOptionPane.YES_NO_OPTION;
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea actualizar este producto?", "Actualizar producto", mensaje);
+        
+        if(respuesta == 0){
+            if(txtID.getText().equals("") || txtNombre.getText().equals("") || txtStock.getText().equals("") || txtPrecio.getText().equals("") || txtEstado.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            }else{
+                try {
+                    DAO oDAO = new DAO();
+                    oDAO.actualizarProducto(txtID.getText(), txtNombre.getText(), Integer.parseInt(txtStock.getText()), Integer.parseInt(txtPrecio.getText()), Integer.parseInt(txtEstado.getText()));
+                    txtID.setText(null);
+                    txtNombre.setText(null);
+                    txtStock.setText(null);
+                    txtPrecio.setText(null);
+                    txtEstado.setText(null);
+                    jtable.setModel(oDAO.show_table_productos());
+                    JOptionPane.showMessageDialog(rootPane, "Producto actualizado con exito!!");
+                } catch (SQLException ex) {
+                    Logger.getLogger(OpProductos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        }
+    }//GEN-LAST:event_btnActualizarMouseClicked
+
+    private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
+        int mensaje = JOptionPane.YES_NO_OPTION;
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea borrar este producto?", "Actualizar producto", mensaje);
+        
+        if(respuesta == 0){
+            if(txtID.getText().equals("") || txtNombre.getText().equals("") || txtStock.getText().equals("") || txtPrecio.getText().equals("") || txtEstado.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            }else{
+                try {
+                    DAO oDAO = new DAO();
+                    oDAO.borrarProducto(txtID.getText());
+                    txtID.setText(null);
+                    txtNombre.setText(null);
+                    txtStock.setText(null);
+                    txtPrecio.setText(null);
+                    txtEstado.setText(null);
+                    jtable.setModel(oDAO.show_table_productos());
+                    JOptionPane.showMessageDialog(rootPane, "Producto borrado con exito!!");
+                } catch (SQLException ex) {
+                    Logger.getLogger(OpProductos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        }
+    }//GEN-LAST:event_btnBorrarMouseClicked
 
     /**
      * @param args the command line arguments

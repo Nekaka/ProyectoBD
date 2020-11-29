@@ -272,7 +272,10 @@ public class OpUsuario extends javax.swing.JFrame {
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea borrar este usuario?", "Borrar usuario", mensaje);
         
         if(respuesta == 0){
-            try {
+            if(txtUser.getText().equals("") || pswPass.getText().equals("") || txtNomApe.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            }else{
+                try {
                 DAO oDAO = new DAO();
                 oDAO.borrarUsuario(Integer.parseInt(txtID.getText()));
                 txtID.setText(null);
@@ -281,9 +284,11 @@ public class OpUsuario extends javax.swing.JFrame {
                 txtNomApe.setText(null);
                 jtable.setModel(oDAO.show_table_user());
                 JOptionPane.showConfirmDialog(rootPane, "Usuario borrado correctamente!!");
-            } catch (SQLException ex) {
-                Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (SQLException ex) {
+                    Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             }
+            
             
         }
     }//GEN-LAST:event_btnBorrarMouseClicked
@@ -293,7 +298,10 @@ public class OpUsuario extends javax.swing.JFrame {
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea actualizar este usuario?", "Actualizar usuario", mensaje);
         
         if(respuesta == 0){
-            try {
+            if(txtUser.getText().equals("") || pswPass.getText().equals("") || txtNomApe.getText().equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
+            }else{
+                try {
                 DAO oDAO = new DAO();
                 oDAO.actualizarUsuario(Integer.parseInt(txtID.getText()), txtUser.getText(), pswPass.getText(), txtNomApe.getText());
                 txtID.setText(null);
@@ -302,9 +310,11 @@ public class OpUsuario extends javax.swing.JFrame {
                 txtNomApe.setText(null);
                 jtable.setModel(oDAO.show_table_user());
                 JOptionPane.showMessageDialog(rootPane, "Datos del usuario actualizados correctamente!!");
-            } catch (SQLException ex) {
-                Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(OpUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             }
+            
             
         }
     }//GEN-LAST:event_btnActualizarMouseClicked

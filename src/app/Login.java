@@ -92,28 +92,28 @@ public class Login extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
-        jpIngreso.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 130, 40));
-        jpIngreso.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, 30));
+        jpIngreso.add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 130, 40));
+        jpIngreso.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 240, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombre.setText("Nombre de usuario:");
-        jpIngreso.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        jpIngreso.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         lblIconNom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconNom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/IconChic.png"))); // NOI18N
-        jpIngreso.add(lblIconNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 40, 40));
+        jpIngreso.add(lblIconNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 40, 40));
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblContraseña.setText("Contraseña:");
-        jpIngreso.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
+        jpIngreso.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         lblIconContra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Candado.png"))); // NOI18N
-        jpIngreso.add(lblIconContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 40, 40));
+        jpIngreso.add(lblIconContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 40, 40));
 
         lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon_1.png"))); // NOI18N
-        jpIngreso.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 110, 110));
+        jpIngreso.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 110, 110));
 
         lblIconoTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito.png"))); // NOI18N
@@ -125,7 +125,7 @@ public class Login extends javax.swing.JFrame {
                 pswPassFocusGained(evt);
             }
         });
-        jpIngreso.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 240, 30));
+        jpIngreso.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 240, 30));
 
         getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
