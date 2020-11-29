@@ -94,5 +94,23 @@ public class DAO {
         System.out.println(sql);
     }
     
+    public DefaultTableModel show_table_productos() throws SQLException{
+        sql = "SELECT * FROM productos;";
+        oConexion.ejecutar(sql);
+        System.out.println(sql);
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ID", "NOMBRE", "STOCK", "PRECIO", "ESTADO"});
+        
+        try {
+            while(oConexion.rs.next()){
+                modelo.addRow(new Object[]{oConexion.rs.getString("id"), oConexion.rs.getString("nombre"), oConexion.rs.getInt("stock"), oConexion.rs.getInt("precio"), oConexion.rs.getInt("estado")});
+            }
+            return modelo;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     
 }

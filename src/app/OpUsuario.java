@@ -154,7 +154,7 @@ public class OpUsuario extends javax.swing.JFrame {
                 lblVolverMouseClicked(evt);
             }
         });
-        jPanel1.add(lblVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        jPanel1.add(lblVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
