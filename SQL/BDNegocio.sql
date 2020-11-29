@@ -9,7 +9,7 @@ CREATE TABLE usuario(
 );
 
 CREATE TABLE productos(
-    id VARCHAR(20),
+    id INT AUTO_INCREMENT,
     nombre TEXT(20),
     stock INT(10),
     precio INT(10),
