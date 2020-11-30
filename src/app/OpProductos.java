@@ -194,12 +194,12 @@ public class OpProductos extends javax.swing.JFrame {
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea crear un nuevo producto?", "Crear producto", mensaje);
         
         if(respuesta == 0){
-            if(txtID.getText().equals("") || txtNombre.getText().equals("") || txtStock.getText().equals("") || txtPrecio.getText().equals("") || txtEstado.getText().equals("")){
+            if(txtNombre.getText().equals("") || txtStock.getText().equals("") || txtPrecio.getText().equals("") || txtEstado.getText().equals("")){
                 JOptionPane.showMessageDialog(rootPane, "Ingrese datos en todos los campos correspondientes!!");
             }else{
                 try {
                     DAO oDAO =new DAO();
-                    oDAO.crearProducto(txtID.getText(), txtNombre.getText(), Integer.parseInt(txtStock.getText()), Integer.parseInt(txtPrecio.getText()), Integer.parseInt(txtEstado.getText()));
+                    oDAO.crearProducto(txtNombre.getText(), Integer.parseInt(txtStock.getText()), Integer.parseInt(txtPrecio.getText()), Integer.parseInt(txtEstado.getText()));
                     txtID.setText(null);
                     txtNombre.setText(null);
                     txtStock.setText(null);
@@ -225,7 +225,7 @@ public class OpProductos extends javax.swing.JFrame {
             }else{
                 try {
                     DAO oDAO = new DAO();
-                    oDAO.actualizarProducto(txtID.getText(), txtNombre.getText(), Integer.parseInt(txtStock.getText()), Integer.parseInt(txtPrecio.getText()), Integer.parseInt(txtEstado.getText()));
+                    oDAO.actualizarProducto(Integer.parseInt(txtID.getText()), txtNombre.getText(), Integer.parseInt(txtStock.getText()), Integer.parseInt(txtPrecio.getText()), Integer.parseInt(txtEstado.getText()));
                     txtID.setText(null);
                     txtNombre.setText(null);
                     txtStock.setText(null);
@@ -251,7 +251,7 @@ public class OpProductos extends javax.swing.JFrame {
             }else{
                 try {
                     DAO oDAO = new DAO();
-                    oDAO.borrarProducto(txtID.getText());
+                    oDAO.borrarProducto(Integer.parseInt(txtID.getText()));
                     txtID.setText(null);
                     txtNombre.setText(null);
                     txtStock.setText(null);

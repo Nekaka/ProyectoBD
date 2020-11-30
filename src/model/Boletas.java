@@ -12,14 +12,14 @@ package model;
 public class Boletas {
     private int id;
     private int id_ventas;
-    private String id_producto;
+    private int id_producto;
     private int cantidad;
     private int precio_venta;
     
   public Boletas(){
         
     }
-  public Boletas(int id, int id_ventas, String id_producto, int cantidad, int precio_venta){
+  public Boletas(int id, int id_ventas, int id_producto, int cantidad, int precio_venta){
         this.id = id;
         this.id_ventas = id_ventas;
         this.id_producto = id_producto;
@@ -44,11 +44,11 @@ public class Boletas {
         this.id_ventas = id_ventas;
     }
 
-    public String getId_producto() {
+    public int getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(String id_producto) {
+    public void setId_producto(int id_producto) {
         this.id_producto = id_producto;
     }
 

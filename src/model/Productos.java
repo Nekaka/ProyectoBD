@@ -10,7 +10,7 @@ package model;
  * @author vania
  */
 public class Productos {
-    private String id;
+    private int id;
     private String nombre;
     private int stock;
     private int precio;
@@ -19,7 +19,7 @@ public class Productos {
     public Productos(){
         
     }
-     public Productos(String id, String nombre, int stock, int precio, int estado){
+     public Productos(int id, String nombre, int stock, int precio, int estado){
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
@@ -27,11 +27,11 @@ public class Productos {
         this.estado = estado;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

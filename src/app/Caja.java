@@ -5,15 +5,24 @@
  */
 package app;
 
+import bd.DAO;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Productos;
 
 /**
  *
  * @author Nekaka
  */
 public class Caja extends javax.swing.JFrame {
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form Caja
@@ -23,6 +32,9 @@ public class Caja extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Image icon = new ImageIcon(getClass().getResource("/image/Icono_normal.png")).getImage();
         this.setIconImage(icon);
+        Calendar calendar = new GregorianCalendar();
+        txtFecha.setText(""+calendar.get(Calendar.YEAR)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.DAY_OF_MONTH));
+        
     }
 
     /**
@@ -42,7 +54,7 @@ public class Caja extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -56,7 +68,7 @@ public class Caja extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
         btnBuscar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -90,13 +102,13 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 120, 30));
 
         jLabel1.setText("PRECIO :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 120, 30));
 
         jLabel2.setText("COD. PRODUCTO :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,12 +119,12 @@ public class Caja extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 600, 210));
 
         jLabel3.setText("CANTIDAD :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 140, 30));
 
         jLabel4.setText("NRO SERIE");
@@ -135,11 +147,21 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 120, 30));
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 80, -1));
 
         btnAgregar.setText("AGREGAR");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 80, 30));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 80, 30));
 
         jLabel9.setText("TOTAL A PAGAR :");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, -1, -1));
@@ -168,6 +190,41 @@ public class Caja extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrarMouseClicked
 
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        if(txtID.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Ingrese el codigo del producto!!");
+        }else{
+            try {
+                DAO oDAO = new DAO();
+                Productos oProductos = oDAO.esProductos(Integer.parseInt(txtID.getText()));
+                System.out.println("" + txtID);
+                if(oProductos == null){
+                    JOptionPane.showMessageDialog(rootPane, "Este producto no existe o no esta registrado!!");
+                    txtID.setText(null);
+                }else{
+                    oProductos.setId(Integer.parseInt(txtID.getText()));
+                    oDAO.getProductos(oProductos);
+                    txtNombre.setText(oProductos.getNombre());
+                    txtPrecio.setText(oProductos.getPrecio()+"");
+                    txtStock.setText(oProductos.getStock()+"");
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Caja.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        agregarProducto();
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    void agregarProducto(){
+        int item = 0;
+        modelo=(DefaultTableModel)jtable.getModel();
+        item = item+1;
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -179,7 +236,7 @@ public class Caja extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -220,11 +277,11 @@ public class Caja extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable jtable;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;

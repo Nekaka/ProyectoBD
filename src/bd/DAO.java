@@ -79,20 +79,20 @@ public class DAO {
         return null;
     }
     
-    public void crearProducto(String id,String nombre, int stock, int precio, int estado) throws SQLException  {
-        sql = "INSERT INTO productos VALUES ('" + id +"', '" +nombre +"', '" + stock + "', '" + precio +"', '"+ estado+ "');";
+    public void crearProducto(String nombre, int stock, int precio, int estado) throws SQLException  {
+        sql = "INSERT INTO productos VALUES (null, '" +nombre +"', '" + stock + "', '" + precio +"', '"+ estado+ "');";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
     
-    public void actualizarProducto(String id,String nombre, int stock, int precio, int estado) throws SQLException  {
+    public void actualizarProducto(int id,String nombre, int stock, int precio, int estado) throws SQLException  {
         sql = "UPDATE productos SET id='" + id +"', nombre='" +nombre +"', stock='" + stock + "', precio='" + precio +"', estado='"+ estado+ "' WHERE id='"+id+"';";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
     
-    public void borrarProducto(String id) throws SQLException{
-        sql = "DELETE FROM productos WHERE id='"+id+"'";
+    public void borrarProducto(int id) throws SQLException{
+        sql = "DELETE FROM productos WHERE id='"+id+"';";
         oConexion.ejecutar(sql);
         System.out.println(sql);
     }
@@ -107,7 +107,7 @@ public class DAO {
         
         try {
             while(oConexion.rs.next()){
-                modelo.addRow(new Object[]{oConexion.rs.getString("id"), oConexion.rs.getString("nombre"), oConexion.rs.getInt("stock"), oConexion.rs.getInt("precio"), oConexion.rs.getInt("estado")});
+                modelo.addRow(new Object[]{oConexion.rs.getInt("id"), oConexion.rs.getString("nombre"), oConexion.rs.getInt("stock"), oConexion.rs.getInt("precio"), oConexion.rs.getInt("estado")});
             }
         return modelo;
         } catch (SQLException e) {
@@ -116,22 +116,36 @@ public class DAO {
         return null;
     }
     
-    public List<Productos> getProductos() throws SQLException{
-        ArrayList<Productos> listaDeProductos = new ArrayList<>();
-        sql = "SELECT * FROM productos;";
+    public Productos esProductos(int id) throws SQLException{
+        sql = "SELECT * FROM productos WHERE id='"+id+"';";
+        System.out.println(sql);
         oConexion.rs = oConexion.ejecutarSelect(sql);
-        Productos oProductos;
-        while(oConexion.rs.next()){
-            oProductos = new Productos();
-            oProductos.setId(oConexion.rs.getString(1));
+        Productos oProductos = new Productos();
+        if(oConexion.rs.next()){          
+            oProductos.setId(oConexion.rs.getInt(1));
             oProductos.setNombre(oConexion.rs.getString(2));
             oProductos.setStock(oConexion.rs.getInt(3));
             oProductos.setPrecio(oConexion.rs.getInt(4));
             oProductos.setEstado(oConexion.rs.getInt(5));
-            listaDeProductos.add(oProductos);
+            return oProductos;
+        }else{
+            return null;
         }
-        oConexion.rs.close();
-        return listaDeProductos;
+    }
+    
+    public void getProductos(Productos oProductos) throws SQLException{
+        
+        sql = "SELECT * FROM productos WHERE id='"+oProductos.getId()+"';";
+        oConexion.ejecutarSelect(sql);
+        
+        while(oConexion.rs.next()){
+            oProductos.setId(oConexion.rs.getInt("id"));
+            oProductos.setNombre(oConexion.rs.getString("nombre"));
+            oProductos.setStock(oConexion.rs.getInt("stock"));
+            oProductos.setPrecio(oConexion.rs.getInt("precio"));
+            oProductos.setEstado(oConexion.rs.getInt("estado"));
+            
+        }
     }
     
 }

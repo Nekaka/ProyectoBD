@@ -11,14 +11,14 @@ package model;
  */
 public class Pedido {
     private int id;
-    private String producto;
+    private int producto;
     private int cantidad;
     
     public Pedido(){
         
     }
     
-    public Pedido(int id, String producto, int cantidad){
+    public Pedido(int id, int producto, int cantidad){
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -32,11 +32,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public String getProducto() {
+    public int getProducto() {
         return producto;
     }
 
-    public void setProducto(String producto) {
+    public void setProducto(int producto) {
         this.producto = producto;
     }
 
