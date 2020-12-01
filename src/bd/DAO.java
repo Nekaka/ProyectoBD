@@ -155,6 +155,9 @@ public class DAO {
     System.out.println(sql);
     }
     
-    
-    
+    public void crearBoleta(int id,int id_ventas, int id_producto, int cantidad, int precio_venta) throws SQLException{
+    sql = "INSERT INTO boleta VALUES (null, '" +id_ventas +"', '" +id_producto+ "', '" + cantidad +"', '"+precio_venta+ "');";    
+    oConexion.ejecutar(sql);
+    System.out.println(sql);
+    }   
 }
