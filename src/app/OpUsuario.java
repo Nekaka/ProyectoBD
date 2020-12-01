@@ -55,6 +55,7 @@ public class OpUsuario extends javax.swing.JFrame {
         jtable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -185,6 +186,10 @@ public class OpUsuario extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 170, 30));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea11.png"))); // NOI18N
+        lblFondo.setText("jLabel5");
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -367,6 +372,7 @@ public class OpUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtable;
     private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblVolver;
     private javax.swing.JPasswordField pswPass;

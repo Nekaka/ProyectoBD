@@ -57,6 +57,7 @@ public class OpProductos extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -108,7 +109,7 @@ public class OpProductos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, -1, 240));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, 240));
         jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 150, 30));
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 150, 30));
 
@@ -157,6 +158,10 @@ public class OpProductos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, -1, -1));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea10.png"))); // NOI18N
+        lblFondo.setText("jLabel1");
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -315,6 +320,7 @@ public class OpProductos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtable;
     private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblVolver;
     private javax.swing.JTextField txtEstado;

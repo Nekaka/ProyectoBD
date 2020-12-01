@@ -51,8 +51,10 @@ public class Login extends javax.swing.JFrame {
         lblIcon = new javax.swing.JLabel();
         lblIconoTienda = new javax.swing.JLabel();
         pswPass = new javax.swing.JPasswordField();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,8 +118,8 @@ public class Login extends javax.swing.JFrame {
         jpIngreso.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 110, 110));
 
         lblIconoTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito.png"))); // NOI18N
-        jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 140, 130));
+        lblIconoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icono_chikito_pngxd.png"))); // NOI18N
+        jpIngreso.add(lblIconoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 140, 130));
 
         pswPass.setText("jPasswordField1");
         pswPass.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -126,6 +128,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jpIngreso.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 240, 30));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea5.png"))); // NOI18N
+        jpIngreso.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
         getContentPane().add(jpIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -226,6 +231,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jpIngreso;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblIconContra;
     private javax.swing.JLabel lblIconNom;

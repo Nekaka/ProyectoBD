@@ -82,6 +82,7 @@ public class Caja extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        lbFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,10 +111,12 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 0, 40, 40));
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 120, 30));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PRECIO :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 120, 30));
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("COD. PRODUCTO :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
 
@@ -132,12 +135,19 @@ public class Caja extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 600, 210));
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CANTIDAD :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 140, 30));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 140, 30));
 
         jLabel4.setText("NRO SERIE");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, -1, -1));
 
         jLabel5.setText("jLabel5");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
@@ -145,9 +155,11 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 120, 30));
         jPanel1.add(txtVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 120, 30));
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("PRODUCTO :");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, -1, -1));
 
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("STOCK :");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
 
@@ -173,8 +185,14 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 80, 30));
 
         jLabel9.setText("TOTAL A PAGAR :");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, -1, -1));
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 120, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, -1, -1));
+
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 120, 30));
 
         jButton3.setText("GENERAR VENTA");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +204,11 @@ public class Caja extends javax.swing.JFrame {
 
         jButton4.setText("CANCELAR");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, -1, -1));
+
+        lbFondo.setBackground(new java.awt.Color(0, 0, 0));
+        lbFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea7.png"))); // NOI18N
+        lbFondo.setText("jLabel10");
+        jPanel1.add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -230, 1050, 1040));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 580));
 
@@ -245,6 +268,14 @@ public class Caja extends javax.swing.JFrame {
         crearVenta();
         crearBoleta();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
     void crearVenta(){
     };
     void crearBoleta(){
@@ -304,6 +335,7 @@ public class Caja extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable jtable;
+    private javax.swing.JLabel lbFondo;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JTextField txtFecha;
