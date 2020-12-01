@@ -177,6 +177,11 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 120, 30));
 
         jButton3.setText("GENERAR VENTA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, -1, -1));
 
         jButton4.setText("CANCELAR");
@@ -236,6 +241,14 @@ public class Caja extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAgregarMouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        crearVenta();
+        crearBoleta();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    void crearVenta(){
+    };
+    void crearBoleta(){
+    };
     
     /**
      * @param args the command line arguments
