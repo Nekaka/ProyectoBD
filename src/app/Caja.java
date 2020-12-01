@@ -23,12 +23,21 @@ import model.Productos;
  */
 public class Caja extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
-
+    
     /**
      * Creates new form Caja
      */
     public Caja() {
         initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("NRO");
+        modelo.addColumn("COD");
+        modelo.addColumn("PRODUCTO");
+        modelo.addColumn("CANTIDAD");
+        modelo.addColumn("PRE UNI");
+        modelo.addColumn("TOTAL");
+        this.jtable.setModel(modelo);
+        
         this.setLocationRelativeTo(null);
         Image icon = new ImageIcon(getClass().getResource("/image/Icono_normal.png")).getImage();
         this.setIconImage(icon);
@@ -168,6 +177,11 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 120, 30));
 
         jButton3.setText("GENERAR VENTA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, -1, -1));
 
         jButton4.setText("CANCELAR");
@@ -216,15 +230,26 @@ public class Caja extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        agregarProducto();
+        int cont = 0;
+        String []info = new String[6]; 
+        info[0]=cont+"";
+        info[1]=txtID.getText();
+        info[2]=txtNombre.getText();
+        info[3]=jSpinner1.getToolTipText();
+        info[4]=txtPrecio.getText();
+        info[5]=txtTotal.getText();
+        
     }//GEN-LAST:event_btnAgregarMouseClicked
 
-    void agregarProducto(){
-        int item = 0;
-        modelo=(DefaultTableModel)jtable.getModel();
-        item = item+1;
-        
-    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        crearVenta();
+        crearBoleta();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    void crearVenta(){
+    };
+    void crearBoleta(){
+    };
+    
     /**
      * @param args the command line arguments
      */

@@ -148,4 +148,16 @@ public class DAO {
         }
     }
     
+    
+    public void crearVenta(int id, int id_user, int total, int fecha_venta, int estado) throws SQLException{
+    sql = "INSERT INTO ventas VALUES (null, '" +id_user +"', '" +total + "', '" + fecha_venta +"', '"+ estado+ "');";
+    oConexion.ejecutar(sql);
+    System.out.println(sql);
+    }
+    
+    public void crearBoleta(int id,int id_ventas, int id_producto, int cantidad, int precio_venta) throws SQLException{
+    sql = "INSERT INTO boleta VALUES (null, '" +id_ventas +"', '" +id_producto+ "', '" + cantidad +"', '"+precio_venta+ "');";    
+    oConexion.ejecutar(sql);
+    System.out.println(sql);
+    }   
 }
