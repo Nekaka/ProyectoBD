@@ -148,4 +148,13 @@ public class DAO {
         }
     }
     
+    
+    public void crearVenta(int id, int id_user, int total, int fecha_venta, int estado) throws SQLException{
+    sql = "INSERT INTO ventas VALUES (null, '" +id_user +"', '" +total + "', '" + fecha_venta +"', '"+ estado+ "');";
+    oConexion.ejecutar(sql);
+    System.out.println(sql);
+    }
+    
+    
+    
 }
