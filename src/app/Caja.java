@@ -74,7 +74,6 @@ public class Caja extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         btnBuscar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         txtFecha = new javax.swing.JTextField();
@@ -82,6 +81,7 @@ public class Caja extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        txtCantidad = new javax.swing.JTextField();
         lbFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -165,7 +165,6 @@ public class Caja extends javax.swing.JFrame {
 
         jLabel8.setText("VENDE :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 50, 20));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 120, 30));
 
         btnBuscar.setText("BUSCAR");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,14 +184,14 @@ public class Caja extends javax.swing.JFrame {
         jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 80, 30));
 
         jLabel9.setText("TOTAL A PAGAR :");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, -1, -1));
 
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 120, 30));
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, 120, 30));
 
         jButton3.setText("GENERAR VENTA");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +203,7 @@ public class Caja extends javax.swing.JFrame {
 
         jButton4.setText("CANCELAR");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, -1, -1));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 120, 30));
 
         lbFondo.setBackground(new java.awt.Color(0, 0, 0));
         lbFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea7.png"))); // NOI18N
@@ -258,7 +258,7 @@ public class Caja extends javax.swing.JFrame {
         info[0]=cont+"";
         info[1]=txtID.getText();
         info[2]=txtNombre.getText();
-        info[3]=jSpinner1.getToolTipText();
+        info[3]=txtCantidad.getText();
         info[4]=txtPrecio.getText();
         info[5]=txtTotal.getText();
         
@@ -332,12 +332,12 @@ public class Caja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable jtable;
     private javax.swing.JLabel lbFondo;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
