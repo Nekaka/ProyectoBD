@@ -12,6 +12,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Productos;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -57,6 +76,7 @@ public class OpProductos extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        btnPDF = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,7 +177,20 @@ public class OpProductos extends javax.swing.JFrame {
                 btnBorrarMouseClicked(evt);
             }
         });
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, -1, -1));
+
+        btnPDF.setText("Generar PDF");
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sea10.png"))); // NOI18N
         lblFondo.setText("jLabel1");
@@ -272,6 +305,71 @@ public class OpProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBorrarMouseClicked
 
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+       Document oDocument = new Document(); //Objeto del Documento
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(oDocument, new FileOutputStream(ruta + "/Desktop/Reporte_Productos_General.pdf")); //Ruta en donde se guardara
+            oDocument.open();//Se abre el documento con el objeto
+            
+            //TITULO
+            oDocument.add(new Paragraph("Informe de Productos \n\n",
+				FontFactory.getFont("arial",   // fuente
+				22,                            // tamaño
+				Font.ITALIC)));             // color
+            
+            //FINTITULO
+            
+            
+            PdfPCell cell = new PdfPCell(); //FORMATO CELDA
+            
+            cell.setColspan(1);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            
+            PdfPTable oTabla = new PdfPTable(5); //Cantidad de columnas
+            oTabla.addCell("ID");
+            oTabla.addCell("NOMBRE");
+            oTabla.addCell("STOCK");
+            oTabla.addCell("PRECIO");
+            oTabla.addCell("ESTADO");;
+            try {
+
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/bdnegocio","root","");
+                    PreparedStatement xd = con.prepareStatement("SELECT id, nombre, stock, precio,estado, stock FROM productos");
+
+                ResultSet rs = xd.executeQuery();
+
+                if (rs.next()) {
+
+                    do {
+                        oTabla.addCell(rs.getString(1));
+                        oTabla.addCell(rs.getString(2));
+                        oTabla.addCell(rs.getString(3));
+                        oTabla.addCell(rs.getString(4));
+                        oTabla.addCell(rs.getString(5));
+                        oTabla.addCell(rs.getString(6));
+                    } while (rs.next());
+
+                    oDocument.add(oTabla);
+
+                }
+            } catch (DocumentException | SQLException e) {
+            }
+            oDocument.close();
+                
+
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
+                
+            
+
+        }                                         
+    }//GEN-LAST:event_btnPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +409,7 @@ public class OpProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
