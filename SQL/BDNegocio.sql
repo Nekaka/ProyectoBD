@@ -14,7 +14,7 @@ CREATE TABLE productos(
     stock INT(10),
     precio INT(10),
     estado INT (1),
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE ventas(
